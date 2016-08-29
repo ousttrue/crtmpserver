@@ -57,12 +57,5 @@ libdirs {
 links {
     "thelib",
     "common",
-
-    "tinyxml",
-    "lua",
-    "libeay32",
-    "ssleay32",
-    "ws2_32",
-    "Shlwapi",
 }
 

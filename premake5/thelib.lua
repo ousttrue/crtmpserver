@@ -3,8 +3,8 @@ local BASE_DIR="../sources/"
 project "thelib"
 --language "C"
 language "C++"
-kind "StaticLib"
---kind "SharedLib"
+--kind "StaticLib"
+kind "SharedLib"
 --kind "ConsoleApp"
 --kind "WindowedApp"
 
@@ -51,7 +51,12 @@ buildoptions {
     "/wd4819",
 }
 libdirs {
+    BASE_DIR.."../3rdparty/openssl64/lib",
 }
 links {
+    "common",
+    "libeay32",
+    "ssleay32",
+    "ws2_32",
 }
 
