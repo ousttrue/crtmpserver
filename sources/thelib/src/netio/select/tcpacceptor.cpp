@@ -121,10 +121,10 @@ bool TCPAcceptor::Accept() {
 	sockaddr address;
 	memset(&address, 0, sizeof (sockaddr));
 	socklen_t len = sizeof (sockaddr);
-	int32_t fd;
+
 
 	//1. Accept the connection
-	fd = accept(_inboundFd, &address, &len);
+	auto fd = accept(_inboundFd, &address, &len);
 	if ((fd < 0) || (!setFdCloseOnExec(fd))) {
 		int err = LASTSOCKETERROR;
 		FATAL("Unable to accept client connection: %d", err);
@@ -189,7 +189,7 @@ bool TCPAcceptor::Drop() {
 
 
 	//1. Accept the connection
-	int32_t fd = accept(_inboundFd, &address, &len);
+	auto fd = accept(_inboundFd, &address, &len);
 	if ((fd < 0) || (!setFdCloseOnExec(fd))) {
 		int err = LASTSOCKETERROR;
 		WARN("Accept failed. Error code was: %d", err);

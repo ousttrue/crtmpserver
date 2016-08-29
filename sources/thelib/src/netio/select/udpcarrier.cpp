@@ -133,7 +133,7 @@ UDPCarrier* UDPCarrier::Create(string bindIp, uint16_t bindPort, uint16_t ttl,
 		uint16_t tos, string ssmIp) {
 
 	//1. Create the socket
-	int sock = socket(AF_INET, SOCK_DGRAM, 0);
+	auto sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if ((sock < 0) || (!setFdCloseOnExec(sock))) {
 		int err = LASTSOCKETERROR;
 		FATAL("Unable to create socket: %d", err);

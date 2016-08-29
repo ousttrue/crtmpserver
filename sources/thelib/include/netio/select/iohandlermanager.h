@@ -81,7 +81,7 @@ public:
 	 */
 	static void UnRegisterIOHandler(IOHandler *pIOHandler);
 
-	static int CreateRawUDPSocket();
+	static intptr_t CreateRawUDPSocket();
 	static void CloseRawUDPSocket(int socket);
 
 #ifdef GLOBALLY_ACCOUNT_BYTES

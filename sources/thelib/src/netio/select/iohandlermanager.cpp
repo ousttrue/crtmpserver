@@ -112,8 +112,8 @@ void IOHandlerManager::UnRegisterIOHandler(IOHandler *pIOHandler) {
 	}
 }
 
-int IOHandlerManager::CreateRawUDPSocket() {
-	int result = socket(AF_INET, SOCK_DGRAM, 0);
+intptr_t IOHandlerManager::CreateRawUDPSocket() {
+	auto result = socket(AF_INET, SOCK_DGRAM, 0);
 	if ((result >= 0)&&(setFdCloseOnExec(result))) {
 		_fdStats.RegisterRawUdp();
 	} else {
