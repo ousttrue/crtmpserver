@@ -43,6 +43,10 @@ filter { "action:vs*" }
 filter {}
 
 dofile "crtmpserver.lua"
+dofile "flvplayback.lua"
+dofile "thelib.lua"
+dofile "common.lua"
+
 dofile "tinyxml.lua"
 dofile "lua.lua"
 

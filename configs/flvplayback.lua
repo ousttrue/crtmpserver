@@ -103,13 +103,14 @@ configuration=
 					--default values. The only mandatory property is
 					--mediaFolder
 					description="Some storage",
-					mediaFolder="/Volumes/Storage/media/",
+					mediaFolder="/Samples",
 					metaFolder="/tmp/metadata",
 					enableStats=false,
 					clientSideBuffer=15,
 					keyframeSeek=false,
 					seekGranularity=0.1,
 				},
+                --[[
 				namedStorage2={
 					mediaFolder="/Volumes/Storage/media/mp4",
 					metaFolder="/tmp/metadata",
@@ -124,6 +125,7 @@ configuration=
 					--this one doesn't have a name
 					mediaFolder="/Volumes/Storage/media/mp3",
 				}
+                --]]
 			},
 		},
 	}

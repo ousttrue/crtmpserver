@@ -1,19 +1,18 @@
 local BASE_DIR="../sources/"
 
-project "crtmpserver"
+project "thelib"
 --language "C"
 language "C++"
---kind "StaticLib"
+kind "StaticLib"
 --kind "SharedLib"
-kind "ConsoleApp"
+--kind "ConsoleApp"
 --kind "WindowedApp"
 
 flags {
     --"WinMain",
 }
 files {
-    BASE_DIR.."crtmpserver/src/crtmpserver.cpp",
-    BASE_DIR.."../builders/VS2010/dummy.cpp",
+    BASE_DIR.."thelib/src/**.cpp",
 }
 excludes {
 }
@@ -52,17 +51,7 @@ buildoptions {
     "/wd4819",
 }
 libdirs {
-    BASE_DIR.."../3rdparty/openssl64/lib",
 }
 links {
-    "thelib",
-    "common",
-
-    "tinyxml",
-    "lua",
-    "libeay32",
-    "ssleay32",
-    "ws2_32",
-    "Shlwapi",
 }
 

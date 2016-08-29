@@ -242,7 +242,7 @@ DLLEXP bool setFdNoNagle(SOCKET fd, bool isUdp);
 DLLEXP bool setFdReuseAddress(SOCKET fd);
 DLLEXP bool setFdTTL(SOCKET fd, uint8_t ttl);
 DLLEXP bool setFdMulticastTTL(SOCKET fd, uint8_t ttl);
-DLLEXP bool setFdBuffers(int32_t fd);
+DLLEXP bool setFdBuffers(intptr_t fd);
 DLLEXP bool setFdTOS(SOCKET fd, uint8_t tos);
 DLLEXP bool setFdOptions(SOCKET fd, bool isUdp);
 DLLEXP bool deleteFile(string path);

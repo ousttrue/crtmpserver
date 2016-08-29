@@ -348,7 +348,7 @@ bool setFdKeepAlive(SOCKET fd, bool isUdp) {
 	return true;
 }
 
-bool setFdBuffers(int32_t fd) {
+bool setFdBuffers(intptr_t fd) {
 	int rbs = 128 * 1024;
 	if (setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (char *)&rbs, sizeof(rbs)) == SOCKET_ERROR) {
 		FATAL("Error #%u", WSAGetLastError());

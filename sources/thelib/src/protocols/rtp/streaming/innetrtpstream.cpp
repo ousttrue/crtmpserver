@@ -453,15 +453,17 @@ bool InNetRTPStream::InternalFeedData(uint8_t *pData, uint32_t dataLength,
 			bool audioRTCPPresent = false;
 			bool videoRTCPPresent = false;
 			if (_hasAudio) {
-				if (_audioNTP != 0)
+				if (_audioNTP != 0) {
 					DEBUG_RTCP_PRESENCE("Audio RTCP detected");
+				}
 				audioRTCPPresent = (_audioNTP != 0);
 			} else {
 				audioRTCPPresent = true;
 			}
 			if (_hasVideo) {
-				if (_videoNTP != 0)
+				if (_videoNTP != 0) {
 					DEBUG_RTCP_PRESENCE("Video RTCP detected");
+				}
 				videoRTCPPresent = (_videoNTP != 0);
 			} else {
 				videoRTCPPresent = true;

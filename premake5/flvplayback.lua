@@ -1,19 +1,19 @@
-local BASE_DIR="../sources/"
+local BASE_DIR="../sources/applications/flvplayback/"
 
-project "crtmpserver"
+project "flvplayback"
 --language "C"
 language "C++"
 --kind "StaticLib"
---kind "SharedLib"
-kind "ConsoleApp"
+kind "SharedLib"
+--kind "ConsoleApp"
 --kind "WindowedApp"
 
 flags {
     --"WinMain",
 }
 files {
-    BASE_DIR.."crtmpserver/src/crtmpserver.cpp",
-    BASE_DIR.."../builders/VS2010/dummy.cpp",
+    BASE_DIR.."src/*.cpp",
+    BASE_DIR.."include/*.h",
 }
 excludes {
 }
@@ -35,11 +35,10 @@ defines {
     "WIN32",
 }
 includedirs {
-    BASE_DIR.."common/include",
-    BASE_DIR.."thelib/include",
-    BASE_DIR.."../3rdparty/openssl64/include",
-    BASE_DIR.."../3rdparty/tinyxml",
-    BASE_DIR.."../3rdparty/lua-dev",
+    BASE_DIR.."include",
+    BASE_DIR.."../../thelib/include",
+    BASE_DIR.."../../common/include",
+    BASE_DIR.."../../../3rdparty/openssl64/include",
 }
 forceincludes {
     "common.h",
@@ -52,7 +51,7 @@ buildoptions {
     "/wd4819",
 }
 libdirs {
-    BASE_DIR.."../3rdparty/openssl64/lib",
+    BASE_DIR.."../../../3rdparty/openssl64/lib",
 }
 links {
     "thelib",
@@ -62,6 +61,7 @@ links {
     "lua",
     "libeay32",
     "ssleay32",
+
     "ws2_32",
     "Shlwapi",
 }
