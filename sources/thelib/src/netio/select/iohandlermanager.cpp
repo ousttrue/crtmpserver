@@ -248,6 +248,9 @@ bool IOHandlerManager::Pulse() {
 		FATAL("Unable to do select: %d", err);
 		return false;
 	}*/
+	if (_fdState.empty()) {
+		return true;
+	}
 
 	int32_t count = select(MAP_KEY(--_fdState.end()) + 1,
 		&_readFdsCopy, &_writeFdsCopy, NULL, &_timeout);

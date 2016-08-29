@@ -20,3 +20,4 @@ _build_premake
 /3rdparty/openssl-1.0.1t
 /3rdparty/openssl64
 
+logs
