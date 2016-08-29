@@ -250,7 +250,7 @@ bool BaseRTMPProtocol::HandleSOPrimitive(string &name, Variant &primitive) {
 		}
 		default:
 		{
-			FATAL("Primitive not supported\n%s", STR(primitive.ToString()));
+			FATAL(" PRImitive not supported\n%s", STR(primitive.ToString()));
 			return false;
 		}
 	}
@@ -364,7 +364,7 @@ void BaseRTMPProtocol::GetStats(Variant &info, uint32_t namespaceId) {
 
 bool BaseRTMPProtocol::ResetChannel(uint32_t channelId) {
 	if (channelId >= MAX_CHANNELS_COUNT) {
-		FATAL("Invalid channel id in reset message: %"PRIu32, channelId);
+		FATAL("Invalid channel id in reset message: %" PRIu32, channelId);
 		return false;
 	}
 	_channels[channelId].Reset();
@@ -486,7 +486,7 @@ void BaseRTMPProtocol::TrySetOutboundChunkSize(uint32_t chunkSize) {
 
 BaseStream * BaseRTMPProtocol::GetRTMPStream(uint32_t rtmpStreamId) {
 	if (rtmpStreamId == 0 || rtmpStreamId >= MAX_STREAMS_COUNT) {
-		//WARN("Invalid stream id: %"PRIu32, rtmpStreamId);
+		//WARN("Invalid stream id: %" PRIu32, rtmpStreamId);
 		return NULL;
 	}
 	return _streams[rtmpStreamId];
@@ -633,7 +633,7 @@ BaseOutNetRTMPStream * BaseRTMPProtocol::CreateONS(uint32_t streamId,
 	}
 
 	if (_streams[streamId]->GetType() != ST_NEUTRAL_RTMP) {
-		FATAL("Try to play a stream over a non neutral stream: id: %u; type: %"PRIu64,
+		FATAL("Try to play a stream over a non neutral stream: id: %u; type: %" PRIu64,
 				streamId, _streams[streamId]->GetType());
 		return NULL;
 	}
@@ -894,7 +894,7 @@ bool BaseRTMPProtocol::ProcessBytes(IOBuffer &buffer) {
 				case RM_HEADER_MESSAGETYPE_VIDEODATA:
 				{
 					if (H_SI(header) >= MAX_STREAMS_COUNT) {
-						FATAL("The server doesn't support stream ids bigger than %"PRIu32,
+						FATAL("The server doesn't support stream ids bigger than %" PRIu32,
 								(uint32_t) MAX_STREAMS_COUNT);
 						return false;
 					}
@@ -940,7 +940,7 @@ bool BaseRTMPProtocol::ProcessBytes(IOBuffer &buffer) {
 				case RM_HEADER_MESSAGETYPE_AUDIODATA:
 				{
 					if (H_SI(header) >= MAX_STREAMS_COUNT) {
-						FATAL("The server doesn't support stream ids bigger than %"PRIu32,
+						FATAL("The server doesn't support stream ids bigger than %" PRIu32,
 								(uint32_t) MAX_STREAMS_COUNT);
 						return false;
 					}
@@ -987,7 +987,7 @@ bool BaseRTMPProtocol::ProcessBytes(IOBuffer &buffer) {
 				case RM_HEADER_MESSAGETYPE_AGGREGATE:
 				{
 					if (H_SI(header) >= MAX_STREAMS_COUNT) {
-						FATAL("The server doesn't support stream ids bigger than %"PRIu32,
+						FATAL("The server doesn't support stream ids bigger than %" PRIu32,
 								(uint32_t) MAX_STREAMS_COUNT);
 						return false;
 					}

@@ -71,7 +71,7 @@ UDPSenderProtocol *UDPSenderProtocol::GetInstance(string bindIp, uint16_t bindPo
 	_destAddress.sin_addr.s_addr = inet_addr(STR(targetIp));
 	_destAddress.sin_port = EHTONS(targetPort);
 	if (_destAddress.sin_addr.s_addr == INADDR_NONE) {
-		FATAL("Unable to compute destination address %s:%"PRIu16, STR(targetIp),
+		FATAL("Unable to compute destination address %s:%" PRIu16, STR(targetIp),
 				targetPort);
 		pResult->EnqueueForDelete();
 		return NULL;
@@ -142,7 +142,7 @@ bool UDPSenderProtocol::SendChunked(uint8_t *pData, uint32_t dataLength,
 				(sockaddr *) & _destAddress, sizeof (_destAddress)) != chunkSize) {
 			int err = LASTSOCKETERROR;
 			if (err == SOCKERROR_ENOBUFS) {
-				WARN("SOCKERROR_ENOBUFS encountered trying to send %"PRIu32" bytes", chunkSize);
+				WARN("SOCKERROR_ENOBUFS encountered trying to send %" PRIu32 " bytes", chunkSize);
 			} else {
 				FATAL("Unable to send bytes over UDP: (%d) %s", err, strerror(err));
 				return false;

@@ -49,12 +49,12 @@ BaseStream::~BaseStream() {
 
 bool BaseStream::SetStreamsManager(StreamsManager *pStreamsManager) {
 	if (pStreamsManager == NULL) {
-		FATAL("no streams manager provided for stream %s(%"PRIu32")",
+		FATAL("no streams manager provided for stream %s(%" PRIu32 ")",
 				STR(tagToString(_type)), _uniqueId);
 		return false;
 	}
 	if (_pStreamsManager != NULL) {
-		FATAL("Stream %s(%"PRIu32") already registered to the streams manager",
+		FATAL("Stream %s(%" PRIu32 ") already registered to the streams manager",
 				STR(tagToString(_type)), _uniqueId);
 		return false;
 	}

@@ -442,7 +442,7 @@ bool StreamMetadataResolver::ComputeSeekMetaPaths(Metadata &result) {
 			result.statsFileFullPath(result.mediaFullPath() + "." + MEDIA_TYPE_STATS);
 		}
 	} else {
-		string fingerprint = format("%s_%d_%"PRIu32,
+		string fingerprint = format("%s_%d_%" PRIu32,
 				STR(result.mediaFullPath()),
 				storage.keyframeSeek(),
 				storage.seekGranularity());

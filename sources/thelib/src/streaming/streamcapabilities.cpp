@@ -494,7 +494,7 @@ void VideoCodecInfo::GetRTMPMetadata(Variant &destination) {
 }
 
 VideoCodecInfo::operator string() {
-	return format("%s %"PRIu32"x%"PRIu32" %.2f fps",
+	return format("%s %" PRIu32 "x%" PRIu32 " %.2f fps",
 			STR(CodecInfo::operator string()),
 			_width,
 			_height,
@@ -612,7 +612,7 @@ bool VideoCodecInfoH264::Deserialize(IOBuffer & buffer) {
 }
 
 VideoCodecInfoH264::operator string() {
-	return format("%s SPS/PPS: %"PRIu32"/%"PRIu32" L/P: %"PRIu8"/%"PRIu8,
+	return format("%s SPS/PPS: %" PRIu32 "/%" PRIu32 " L/P: %" PRIu8 "/%" PRIu8,
 			STR(VideoCodecInfo::operator string()),
 			_spsLength,
 			_ppsLength,
@@ -823,7 +823,7 @@ bool VideoCodecInfoSorensonH263::Deserialize(IOBuffer & buffer) {
 }
 
 VideoCodecInfoSorensonH263::operator string() {
-	return format("%s Headers: %"PRIu32,
+	return format("%s Headers: %" PRIu32,
 			STR(VideoCodecInfo::operator string()),
 			_length);
 }
@@ -862,19 +862,19 @@ bool VideoCodecInfoSorensonH263::Init(uint8_t *pHeaders, uint32_t length) {
 
 	uint32_t marker = ba.ReadBits<uint32_t > (17);
 	if (marker != 0x01) {
-		FATAL("Invalid marker: %"PRIx32, marker);
+		FATAL("Invalid marker: %" PRIx32, marker);
 		return false;
 	}
 
 	uint8_t format1 = ba.ReadBits<uint8_t > (5);
 	if ((format1) != 0 && (format1 != 1)) {
-		FATAL("Invalid format1: %"PRIx8, format1);
+		FATAL("Invalid format1: %" PRIx8, format1);
 		return false;
 	}
 
 	uint8_t pictureNumber = ba.ReadBits<uint8_t > (8);
 	if (pictureNumber != 0) {
-		WARN("This is not the first picture from a Sorenson H.263 stream: %"PRIx8, pictureNumber);
+		WARN("This is not the first picture from a Sorenson H.263 stream: %" PRIx8, pictureNumber);
 	}
 
 	uint8_t format2 = ba.ReadBits<uint8_t > (3);
@@ -918,7 +918,7 @@ bool VideoCodecInfoSorensonH263::Init(uint8_t *pHeaders, uint32_t length) {
 			break;
 		default:
 		{
-			FATAL("Invalid format2: %"PRIx8, format2);
+			FATAL("Invalid format2: %" PRIx8, format2);
 			return false;
 		}
 	}
@@ -987,7 +987,7 @@ bool VideoCodecInfoVP6::Deserialize(IOBuffer & buffer) {
 }
 
 VideoCodecInfoVP6::operator string() {
-	return format("%s Headers: %"PRIu32,
+	return format("%s Headers: %" PRIu32,
 			STR(VideoCodecInfo::operator string()),
 			_length);
 }
@@ -1077,7 +1077,7 @@ void AudioCodecInfo::GetRTMPMetadata(Variant &destination) {
 }
 
 AudioCodecInfo::operator string() {
-	return format("%s %"PRIu8" channels, %"PRIu8" bits/sample",
+	return format("%s %" PRIu8 " channels, %" PRIu8 " bits/sample",
 			STR(CodecInfo::operator string()),
 			_channelsCount,
 			_bitsPerSample);
@@ -1193,7 +1193,7 @@ bool AudioCodecInfoAAC::Deserialize(IOBuffer & buffer) {
 }
 
 AudioCodecInfoAAC::operator string() {
-	return format("%s codec length: %"PRIu8,
+	return format("%s codec length: %" PRIu8,
 			STR(AudioCodecInfo::operator string()),
 			_codecBytesLength);
 }
@@ -1203,7 +1203,7 @@ bool AudioCodecInfoAAC::Init(uint8_t *pCodecBytes, uint8_t codecBytesLength,
 	//http://wiki.multimedia.cx/index.php?title=MP4A#Audio_Specific_Config
 
 	if (codecBytesLength < 2) {
-		FATAL("Invalid length: %"PRIu8, codecBytesLength);
+		FATAL("Invalid length: %" PRIu8, codecBytesLength);
 		return false;
 	}
 
@@ -1250,7 +1250,7 @@ bool AudioCodecInfoAAC::Init(uint8_t *pCodecBytes, uint8_t codecBytesLength,
 			&& (_audioObjectType != 20)
 			&& (_audioObjectType != 23)
 			&& (_audioObjectType != 39)) {
-		FATAL("Invalid _audioObjectType: %"PRIu8, _audioObjectType);
+		FATAL("Invalid _audioObjectType: %" PRIu8, _audioObjectType);
 		return false;
 	}
 
@@ -1262,12 +1262,12 @@ bool AudioCodecInfoAAC::Init(uint8_t *pCodecBytes, uint8_t codecBytesLength,
 	_sampleRateIndex = ba.ReadBits<uint8_t > (4);
 	if ((_sampleRateIndex == 13)
 			|| (_sampleRateIndex == 14)) {
-		FATAL("Invalid sample rate: %"PRIu8, _sampleRateIndex);
+		FATAL("Invalid sample rate: %" PRIu8, _sampleRateIndex);
 		return false;
 	}
 	if (_sampleRateIndex == 15) {
 		if (codecBytesLength < 5) {
-			FATAL("Invalid length: %"PRIu32, codecBytesLength);
+			FATAL("Invalid length: %" PRIu32, codecBytesLength);
 			return false;
 		}
 		if (ba.AvailableBits() < 24) {
@@ -1290,7 +1290,7 @@ bool AudioCodecInfoAAC::Init(uint8_t *pCodecBytes, uint8_t codecBytesLength,
 	}
 	_channelsCount = ba.ReadBits<uint8_t > (4);
 	if ((_channelsCount == 0) || (_channelsCount >= 8)) {
-		FATAL("Invalid _channelConfigurationIndex: %"PRIu8, _channelsCount);
+		FATAL("Invalid _channelConfigurationIndex: %" PRIu8, _channelsCount);
 		return false;
 	}
 
@@ -1569,7 +1569,7 @@ bool StreamCapabilities::Deserialize(IOBuffer & buffer, BaseInStream *pInStream)
 				case CODEC_VIDEO_SCREENVIDEO2:
 				default:
 				{
-					FATAL("Invalid codec type: %016"PRIx64, type);
+					FATAL("Invalid codec type: %016" PRIx64, type);
 					return false;
 				}
 			}
@@ -1641,7 +1641,7 @@ bool StreamCapabilities::Deserialize(IOBuffer & buffer, BaseInStream *pInStream)
 				case CODEC_AUDIO_SPEEX:
 				default:
 				{
-					FATAL("Invalid codec type: %016"PRIx64, type);
+					FATAL("Invalid codec type: %016" PRIx64, type);
 					return false;
 				}
 			}

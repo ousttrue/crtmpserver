@@ -500,7 +500,7 @@ void RTSPProtocol::CloseInboundConnectivity() {
 bool RTSPProtocol::SendRaw(uint8_t *pBuffer, uint32_t length, bool allowDrop) {
 	if ((allowDrop)&&(length > 0)) {
 		if (GETAVAILABLEBYTESCOUNT(_outputBuffer) > _maxBufferSize) {
-			//			WARN("%"PRIu32" bytes dropped on connection %s. Max: %"PRIu32"; Current: %"PRIu32,
+			//			WARN("%" PRIu32 " bytes dropped on connection %s. Max: %" PRIu32 "; Current: %" PRIu32,
 			//					length, STR(*this), _maxBufferSize, GETAVAILABLEBYTESCOUNT(_outputBuffer));
 			return true;
 		}
@@ -513,7 +513,7 @@ bool RTSPProtocol::SendRaw(MSGHDR *pMessage, uint16_t length, RTPClient *pClient
 		bool isAudio, bool isData, bool allowDrop) {
 	if ((allowDrop)&&(length > 0)) {
 		if (GETAVAILABLEBYTESCOUNT(_outputBuffer) > _maxBufferSize) {
-			//			WARN("%"PRIu32" bytes dropped on connection %s. Max: %"PRIu32"; Current: %"PRIu32,
+			//			WARN("%" PRIu32 " bytes dropped on connection %s. Max: %" PRIu32 "; Current: %" PRIu32,
 			//					length, STR(*this), _maxBufferSize, GETAVAILABLEBYTESCOUNT(_outputBuffer));
 			return true;
 		}
@@ -553,7 +553,7 @@ void RTSPProtocol::SetOutStream(BaseOutStream *pOutStream) {
 bool RTSPProtocol::SendMessage(Variant &headers, string &content) {
 	//2. Add the content length if required
 	if (content.size() > 0) {
-		headers[RTSP_HEADERS][RTSP_HEADERS_CONTENT_LENGTH] = format("%"PRIz"u", content.size());
+		headers[RTSP_HEADERS][RTSP_HEADERS_CONTENT_LENGTH] = format("%" PRIz "u", content.size());
 	}
 
 	//3. Add the session id if necessary
@@ -826,7 +826,7 @@ bool RTSPProtocol::HandleRTSPMessage(IOBuffer &buffer) {
 		buffer.Ignore(chunkLength);
 		if (!((bool)_inboundHeaders["isHttp"])) {
 			if (_inboundContent.size() < _contentLength) {
-				FINEST("Not enough data. Wanted: %u; got: %"PRIz"u", _contentLength, _inboundContent.size());
+				FINEST("Not enough data. Wanted: %u; got: %" PRIz "u", _contentLength, _inboundContent.size());
 				return true;
 			}
 		}

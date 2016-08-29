@@ -134,7 +134,7 @@ bool TCPAcceptor::Accept() {
 	if (!_enabled) {
 		CLOSE_SOCKET(fd);
 		_droppedCount++;
-		WARN("Acceptor is not enabled. Client dropped: %s:%"PRIu16" -> %s:%"PRIu16,
+		WARN("Acceptor is not enabled. Client dropped: %s:%" PRIu16 " -> %s:%" PRIu16,
 				inet_ntoa(((sockaddr_in *) & address)->sin_addr),
 				ENTOHS(((sockaddr_in *) & address)->sin_port),
 				STR(_ipAddress),
@@ -173,7 +173,7 @@ bool TCPAcceptor::Accept() {
 
 	_acceptedCount++;
 
-	INFO("Client connected: %s:%"PRIu16" -> %s:%"PRIu16,
+	INFO("Client connected: %s:%" PRIu16 " -> %s:%" PRIu16,
 			inet_ntoa(((sockaddr_in *) & address)->sin_addr),
 			ENTOHS(((sockaddr_in *) & address)->sin_port),
 			STR(pTCPCarrier->GetNearEndpointAddressIp()),
@@ -202,7 +202,7 @@ bool TCPAcceptor::Drop() {
 	CLOSE_SOCKET(fd);
 	_droppedCount++;
 
-	INFO("Client explicitly dropped: %s:%"PRIu16" -> %s:%"PRIu16,
+	INFO("Client explicitly dropped: %s:%" PRIu16 " -> %s:%" PRIu16,
 			inet_ntoa(((sockaddr_in *) & address)->sin_addr),
 			ENTOHS(((sockaddr_in *) & address)->sin_port),
 			STR(_ipAddress),

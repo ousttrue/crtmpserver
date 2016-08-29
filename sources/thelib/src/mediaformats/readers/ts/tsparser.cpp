@@ -166,7 +166,7 @@ bool TSParser::ProcessPacket(uint32_t packetHeader, IOBuffer &buffer,
 		case PID_TYPE_UNKNOWN:
 		{
 			if (!MAP_HAS1(_unknownPids, pPIDDescriptor->pid)) {
-				//WARN("PID %"PRIu16" not known yet", pPIDDescriptor->pid);
+				//WARN("PID %" PRIu16 " not known yet", pPIDDescriptor->pid);
 				_unknownPids[pPIDDescriptor->pid] = pPIDDescriptor->pid;
 			}
 			return true;
@@ -179,7 +179,7 @@ bool TSParser::ProcessPacket(uint32_t packetHeader, IOBuffer &buffer,
 		}
 		default:
 		{
-			WARN("PID type not implemented: %d. Pid number: %"PRIu16,
+			WARN("PID type not implemented: %d. Pid number: %" PRIu16,
 					pPIDDescriptor->type, pPIDDescriptor->pid);
 			return false;
 		}
@@ -503,7 +503,7 @@ bool TSParser::ProcessPidTypeAV(PIDDescriptor *pPIDDescriptor, uint8_t *pData,
 			}
 
 			if (pPIDDescriptor->pAVContext->_dts.time > tempDtsTime) {
-				WARN("Back timestamp: %.2f -> %.2f on pid %"PRIu16,
+				WARN("Back timestamp: %.2f -> %.2f on pid %" PRIu16,
 						pPIDDescriptor->pAVContext->_dts.time, tempDtsTime, pPIDDescriptor->pid);
 				pPIDDescriptor->pAVContext->DropPacket();
 				return true;

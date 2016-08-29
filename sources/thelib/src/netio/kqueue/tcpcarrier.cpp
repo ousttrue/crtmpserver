@@ -71,7 +71,7 @@ bool TCPCarrier::OnEvent(struct kevent &event) {
 			IOBuffer *pInputBuffer = _pProtocol->GetInputBuffer();
 			o_assert(pInputBuffer != NULL);
 			if (!pInputBuffer->ReadFromTCPFd(event.ident, event.data, _ioAmount)) {
-				FATAL("Unable to read data. %s:%"PRIu16" -> %s:%"PRIu16" %s",
+				FATAL("Unable to read data. %s:%" PRIu16 " -> %s:%" PRIu16 " %s",
 						STR(_farIp), _farPort,
 						STR(_nearIp), _nearPort,
 						(_pProtocol != NULL) ? STR(*_pProtocol) : ""
