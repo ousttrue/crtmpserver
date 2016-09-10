@@ -10,15 +10,6 @@ configuration=
 			type="coloredConsole",
 			level=6
 		},
-		{
-			name="file appender",
-			type="file",
-			level=6,
-			fileName="./logs/crtmpserver",
-			fileHistorySize=10,
-			fileLength=1024*1024,
-			singleLine=true	
-		}
 	},
 	
 	applications=
@@ -61,7 +52,7 @@ configuration=
 					ip="0.0.0.0",
 					port=6666,
 					protocol="inboundLiveFlv",
-					waitForMetadata=true,
+					--waitForMetadata=true,
 				},
 				{
 					ip="0.0.0.0",
@@ -103,8 +94,8 @@ configuration=
 					--default values. The only mandatory property is
 					--mediaFolder
 					description="Some storage",
-					mediaFolder="/Samples",
-					metaFolder="/tmp/metadata",
+					mediaFolder="public_html/media",
+					metaFolder="public_html/metadata",
 					enableStats=false,
 					clientSideBuffer=15,
 					keyframeSeek=false,
