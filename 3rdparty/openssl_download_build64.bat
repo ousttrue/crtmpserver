@@ -24,7 +24,7 @@ if not exist %OPENSSL_ARCHIVE% "%USRBIN%sh.exe" -c "/bin/curl -O %OPENSSL_URL%"
 @rem openssl extract
 @rem ------------------------------------------------------------
 if exist %OPENSSL_DIR% "%USRBIN%sh.exe" -c "/bin/rm -rf %OPENSSL_DIR%"
-"%USRBIN%sh.exe" -c "/bin/tar xf %OPENSSL_ARCHIVE%"
+"%USRBIN%sh.exe" -c "PATH=/usr/bin:$PATH /bin/tar xf %OPENSSL_ARCHIVE%"
 
 @rem ------------------------------------------------------------
 @rem openssl build
