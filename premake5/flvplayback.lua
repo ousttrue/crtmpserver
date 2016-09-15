@@ -67,7 +67,7 @@ links {
 }
 
 postbuildcommands {
-    "mkdir $(TargetDir)",
+    "mkdir ..\\Applications\\flvplayback",
     "copy $(TargetPath) ..\\Applications\\flvplayback\\$(TargetName)$(TargetExt)",
 }
 filter {"platforms:Win64", "configurations:Debug" }
