@@ -1,5 +1,5 @@
 pushd 3rdparty
-openssl_download_build64.bat
+call openssl_download_build64.bat
 popd
 pushd premake5
 premake5.exe vs2015
