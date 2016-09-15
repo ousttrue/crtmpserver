@@ -66,3 +66,14 @@ links {
     "Shlwapi",
 }
 
+postbuildcommands {
+    "mkdir $(TargetDir)",
+    "copy $(TargetPath) ..\\Applications\\flvplayback\\$(TargetName)$(TargetExt)",
+}
+filter {"platforms:Win64", "configurations:Debug" }
+do
+    postbuildcommands {
+        "copy $(TargetDir)$(TargetName).pdb ..\\Applications\\flvplayback\\$(TargetName).pdb",
+    }
+end
+
